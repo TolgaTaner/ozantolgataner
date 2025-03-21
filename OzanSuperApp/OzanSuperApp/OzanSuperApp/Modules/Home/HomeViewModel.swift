@@ -10,7 +10,7 @@ import Foundation
 protocol HomeViewModelDelegate: BaseViewModelDelegate {
     func fetchedCoinsSuccessfully()
     func fetchedCoinsFailed(_  error: Error)
-    func filterDidFinished(_ type: HomeViewModel.FilterType)
+    func filterDidFinished(_ type: HomeViewModel.SortType)
 }
 
 final class HomeViewModel {
@@ -18,16 +18,16 @@ final class HomeViewModel {
     private let client: HomeClient
     var coins: [Coin]
     
-    enum FilterType: String, CaseIterable {
+    enum SortType: String, CaseIterable {
+        case volume = "24h Vol"
         case price = "Price"
         case marketCap = "Market Cap"
-        case volume = "24h Vol"
         case change = "Change"
         case listedAt = "ListedAt"
     }
     
     private struct Constant {
-        static let coins = "/api/v1/dummy/coins"
+        static let coinsPath = "/api/v1/dummy/coins"
     }
     
     init() {
@@ -41,7 +41,7 @@ final class HomeViewModel {
 }
 //MARK: - HomeViewControllerDelegate
 extension HomeViewModel: HomeViewControllerDelegate {
-    func filter(byType type: FilterType) {
+    func sortCoins(byType type: HomeViewModel.SortType) {
         switch type {
         case .change: coins.sort { $0.change.numberValue?.doubleValue ?? 0.0 > $1.change.numberValue?.doubleValue ?? 0.0 }
         case .listedAt: coins.sort { $0.listedAt > $1.listedAt }
@@ -56,8 +56,8 @@ extension HomeViewModel: HomeViewControllerDelegate {
         coins[row]
     }
     
-    func getRanking() {
-        client.get(path: Constant.coins, queryItems: nil)
+    func getCoins() {
+        client.get(path: Constant.coinsPath)
     }
     
     func viewWillAppear() {

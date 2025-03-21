@@ -46,8 +46,7 @@ final class HomeDetailViewController: UIViewController {
 //MARK: - HomeViewModelDelegate
 extension HomeDetailViewController: HomeDetailViewModelDelegate {
     func configureAfterViewDidLoad() {
-        homeDetailNavigationView.configure(coin: viewModel.coin)
-        homeDetailNavigationView.delegate = self
+        homeDetailNavigationView.configure(coin: viewModel.coin, delegate: self)
         titleLabel.text = "CURRENT PRICE"
         priceLabel.text = viewModel.coin.formattedPrice
         if let changeInNumberValue = viewModel.coin.change.numberValue {
@@ -62,10 +61,10 @@ extension HomeDetailViewController: HomeDetailViewModelDelegate {
             percentagePriceLabel.text = viewModel.coin.changeInPrice
             percentageLabel.text = viewModel.coin.formattedChange
         }
-        lowPriceLabel.text = viewModel.coin.formattedLow
-        highPriceLabel.text = viewModel.coin.formattedHigh
         highPriceLabel.textColor = .systemGreen
         lowPriceLabel.textColor = .systemRed
+        lowPriceLabel.text = viewModel.coin.formattedLow
+        highPriceLabel.text = viewModel.coin.formattedHigh
     }
     
     func configureAfterViewWillAppear() {}

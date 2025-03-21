@@ -20,14 +20,14 @@ final class HomeNavigationView: CustomXibView {
     
     func configure() {
         titleLabel.text = "Ranking List"
-        pickerTextField.pickerData = HomeViewModel.FilterType.allCases.map { $0.rawValue }
         pickerTextField.layer.cornerRadius = 17
         pickerTextField.layer.masksToBounds = true
+        pickerTextField.pickerData = HomeViewModel.SortType.allCases.map { $0.rawValue }
         pickerTextField.pickerDelegate = self
     }
     
     func selectVolumeFilter() {
-        pickerTextField.selectSecond()
+        pickerTextField.selectFirst()
     }
     
 }

@@ -20,9 +20,10 @@ final class HomeDetailNavigationView: CustomXibView {
     
     weak var delegate: HomeDetailNavigationViewDelegate?
     
-    func configure(coin: Coin) {
+    func configure(coin: Coin, delegate: HomeDetailNavigationViewDelegate) {
         currencyShortNameLabel.text = coin.symbol
         currencyLongNameLabel.text = coin.name
+        self.delegate = delegate
     }
     
     @IBAction private func backButtonDidTapped(_ sender: Any) {

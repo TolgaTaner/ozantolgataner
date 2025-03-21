@@ -10,9 +10,9 @@ import UIKit
 protocol HomeViewControllerDelegate: BaseViewControllerDelegate {
     var coins: [Coin] { get set }
     
-    func getRanking()
+    func getCoins()
     func getCoin(atRow row: Int) -> Coin
-    func filter(byType type: HomeViewModel.FilterType)
+    func sortCoins(byType type: HomeViewModel.SortType)
 }
 
 final class HomeViewController: UIViewController {
@@ -61,14 +61,14 @@ extension HomeViewController: HomeViewModelDelegate {
         homeNavigationView.delegate = self
         collectionView.register(UINib(nibName: "HomeCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "HomeCollectionViewCell")
         homeNavigationView.configure()
-        viewModel.getRanking()
+        viewModel.getCoins()
     }
     
     func configureAfterViewWillAppear() {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func filterDidFinished(_ type: HomeViewModel.FilterType) {
+    func filterDidFinished(_ type: HomeViewModel.SortType) {
         collectionView.reloadData()
     }
 }
@@ -109,6 +109,6 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
 //MARK: - HomeNavigationViewDelegate
 extension HomeViewController: HomeNavigationViewDelegate {
     func pickerDidSelect(_ text: String) {
-        viewModel.filter(byType: HomeViewModel.FilterType(rawValue: text) ?? .volume)
+        viewModel.sortCoins(byType: HomeViewModel.SortType(rawValue: text) ?? .volume)
     }
 }

@@ -55,8 +55,12 @@ final class CustomPickerTextField: UITextField, UIPickerViewDelegate, UIPickerVi
         }
     }
     
-    func selectSecond() {
-        pickerView(pickerView, didSelectRow: 2, inComponent: 0)
+    func selectFirst() {
+        DispatchQueue.main.async {
+            self.pickerView(self.pickerView, didSelectRow: 0, inComponent: 0)
+            self.pickerView.selectRow(0, inComponent: 0, animated: false)
+            self.pickerView.reloadAllComponents()
+        }
         pickerDelegate?.didSelect(text ?? String())
     }
 

@@ -19,7 +19,6 @@ final class HomeBuilder: BuilderProtocol {
             return HomeViewController(coder: coder, viewModel: viewModel)
         }
         viewModel.setDelegate(viewController)
-        
         let navigationController: UINavigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }

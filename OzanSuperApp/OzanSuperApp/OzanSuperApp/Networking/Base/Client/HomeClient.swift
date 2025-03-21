@@ -21,7 +21,7 @@ final class HomeClient {
     weak var delegate: HomeClientDelegate?
     
     func get(path: String,
-             queryItems: [URLQueryItem]?) {
+             queryItems: [URLQueryItem]? = nil) {
         api.send(Request.get(path: path,
                              queryItems: queryItems ?? nil, completion: { [weak self] (responseData) in
             guard let self = self else { return }

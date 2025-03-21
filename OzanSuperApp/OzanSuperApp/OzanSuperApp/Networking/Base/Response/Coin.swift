@@ -83,6 +83,7 @@ struct Coin: Model {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
         formatter.groupingSeparator = ","
         formatter.decimalSeparator = "."
         return formatter
@@ -91,9 +92,8 @@ struct Coin: Model {
     private static var percentageFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 2
-        numberFormatter.minimumFractionDigits = 0
+        numberFormatter.minimumFractionDigits = 2
         numberFormatter.decimalSeparator = "."
         numberFormatter.groupingSeparator = "."
         return numberFormatter
@@ -102,7 +102,8 @@ struct Coin: Model {
     private static var changesFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        formatter.maximumFractionDigits = 2
+        formatter.maximumFractionDigits = 3
+        formatter.minimumFractionDigits = 2
         formatter.decimalSeparator = "."
         formatter.currencySymbol = "$"
         return formatter
