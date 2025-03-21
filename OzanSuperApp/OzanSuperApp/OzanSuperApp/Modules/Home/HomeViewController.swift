@@ -101,6 +101,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let coin = viewModel.coins[indexPath.row]
+        let detailModule = HomeDetailBuilder.create(coin)
+        navigationController?.pushViewController(detailModule, animated: true)
     }
     
 }

@@ -7,19 +7,13 @@
 
 import UIKit
 
-protocol BuilderProtocol: AnyObject {
-    static var storyboard: UIStoryboard { get }
-    static var identifier: String { get }
-    
-    static func create() -> UINavigationController
-}
-
 final class HomeBuilder: BuilderProtocol {
     
+    typealias Module = UINavigationController
     static var storyboard: UIStoryboard { UIStoryboard(name: "Main", bundle: nil) }
     static var identifier: String { "HomeViewController" }
     
-    static func create() -> UINavigationController {
+    static func create() -> Module {
         let viewModel: HomeViewModel = HomeViewModel()
         let viewController: HomeViewController = storyboard.instantiateViewController(identifier: identifier) { coder in
             return HomeViewController(coder: coder, viewModel: viewModel)

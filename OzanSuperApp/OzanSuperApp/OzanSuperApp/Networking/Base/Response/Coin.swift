@@ -34,6 +34,22 @@ struct Coin: Model {
         return change
     }
     
+    var formattedHigh: String {
+        if let numberValue = sparkline.first?.numberValue,
+           let formattedHigh = Self.highLowFormatter.string(from: numberValue) {
+            return formattedHigh
+        }
+        return change
+    }
+    
+    var formattedLow: String {
+        if let numberValue = sparkline.last?.numberValue,
+           let formattedLow = Self.highLowFormatter.string(from: numberValue) {
+            return formattedLow
+        }
+        return change
+    }
+    
     var changeInPrice: String {
         if let priceInDouble = price.numberValue?.doubleValue,
            let changeInDouble = change.numberValue?.doubleValue {
@@ -60,6 +76,15 @@ struct Coin: Model {
         formatter.groupingSeparator = ","
         formatter.decimalSeparator = "."
         formatter.currencySymbol = "$"
+        return formatter
+    }()
+    
+    private static var highLowFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        formatter.groupingSeparator = ","
+        formatter.decimalSeparator = "."
         return formatter
     }()
     
