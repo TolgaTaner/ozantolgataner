@@ -20,7 +20,7 @@ final class HomeViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var homeNavigationView: HomeNavigationView!
     
-    private let viewModel: HomeViewModel
+    private let viewModel: HomeViewControllerDelegate
     
     required init?(coder: NSCoder, viewModel: HomeViewModel) {
         self.viewModel = viewModel

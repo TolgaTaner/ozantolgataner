@@ -9,6 +9,29 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>OzanSuperAppTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>95ECEDA42D899CD200773515</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95ECEDBA2D899CD400773515</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>95ECEDC42D899CD400773515</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
